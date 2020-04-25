@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-3.4.1-dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="CSS/home.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="contanier">
+        <ul><li> <img src="images/emi 1.jpg" alt="emi">
+        </li>
+        <li><a>Calculator</a></li>
+        <li><a href="#widget">EMI Widget</a></li>
+        <li><a href="#articels">articles</a></li>
+        <li><a href="news bites">news bites</a></li>
+        <li><a href="#FAQS">FAQS</a></li>
+        </ul></div>
+        <h1>EMI CALCULATOR FOR HOME LOAN AND PERSONAL LOAN IN INDIA</h1>
+    </header>
+    <div class="emi-contanier row" >
+      <div class="main">
+        <ul id="emi-loan">
+            <li id="HOME LOAN" class="active"><a>home loan</a></li>
+            <li><a>personal loan</a></li>
+        </ul>
+        <div class="form-loan">
+            <form action="action.php"> 
+                <label for="type loan">HOME LOAN</label>
+                <input type="text" value="2000000" name="loan amount">
+            </form>
+            <div class="slidecontainer">
+                 <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
+               </div>
+            <br>
+            <form action="action.php"> 
+                <label for="type loan">PERSONAL LOAN</label>
+                <input type="text" value="1000000" name="loan amount">
+            </form>
+            <div class="slidecontainer">
+                <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
+              </div>
+            </div>
+        </div>
+        <div class="side"> side</div>
+      </div>
+    </div>
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
