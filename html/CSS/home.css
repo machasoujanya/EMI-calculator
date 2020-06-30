@@ -1,95 +1,19 @@
 *{
     box-sizing: content-box;
 }
-header{
-    margin: 0px;
- padding: 0px;
+*{
+  box-sizing: border-box;
 }
-.contanier{
-    background-color: cyan;
-    color: white;
+.header{
+  background-color: darkturquoise;
 }
-.contanier, h1{
-    text-align: center;
-    margin: 3px;
+#maincontanier{
+border-style:dashed ;
+border-left: none;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.emi-amount{
+  margin-left: 10px;
 }
-img{
-    width: 80px;
-    height: 90px;
-margin: 8px;
+.emi-amount-outer{
+ 
 }
-li {
-  float: left;
-}
-.contanier, li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-.emi-contanier{
-    height: 800px;
-    width: 900px;
-    margin-left: 80px;
-    margin-right: 80px;
-    border-style: dashed;
-    border-color: lightgray;
-    border-spacing: 5px;
-    background-color: darkgrey;
-}
-#emi-loan, li a{
-    color: black;
-}
-.form-loan{
-    margin-left:60px;
-}
-.slidecontainer {
-    width: 50%;
-  }
-  .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    margin: 15px;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-  } 
-  .slider:hover {
-    opacity: 1;
-  }
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
-    cursor: pointer;
-  }
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #4CAF50;
-    cursor: pointer;
-  }
- .row{
-   display: flex;
- }
- .main{
-   flex: 70%;
-   background-color: thistle;
- }
- .side{
-   flex: 30%;
-   background-color: wheat;
- }
-
