@@ -1,19 +1,30 @@
 *{
-    box-sizing: content-box;
+ box-sizing: border-box; 
+ overflow: hidden;
 }
-*{
-  box-sizing: border-box;
-}
-.header{
-  background-color: darkturquoise;
-}
+
 #maincontanier{
-border-style:dashed ;
-border-left: none;
+  border-style: dashed;
+  background-color: lightgrey;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  margin-left: 25%;
 }
-.emi-amount{
-  margin-left: 10px;
+.input-group-btn{
+  
+  vertical-align: top;
+  
 }
-.emi-amount-outer{
- 
+
+
+input[type=range]{
+  width: 35%;
+  display: inline-table;
+  
 }
+.output{
+  text-align: center;
+}
+
+

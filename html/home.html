@@ -8,90 +8,128 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="contanier-fluid">
-  <div class="row">
-      <div class="col-sm-12 ">
-        <nav class="navbar navbar-default header">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a href="#"><img src="images/emi 1.jpg" alt="emi image" style="width: 80px; height: 100px;"></a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li><a href="#">Calculator</a></li>
-                <li><a href="#">widget</a></li>
-                <li><a href="#">Articales</a></li>
-                <li><a href="#">FAQS</a></li>
-              </ul>
-            </div>
-          </nav>
-      </div>
-  </div>
-  </div>
-  <h1>EMI CALCULATOR FOR HOME LOAN IN INDIA</h1>
+  <div class="contanier-fluid" >
   <div class="row " id="maincontanier">
-    <div class="container-fluid">
-  <div class="col-sm-6 ">
-    <nav class="navbar navbar-default">
-     
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="emi home.html">Home Loan</a></li>
-            <li><a href="C:/Users/DELL/Desktop/EMI-calculator/html/Personal_Loan.html">Personal loan</a></li>
-          </ul>
-          <br>
-          <br>
-          <br>
-          <div class="form-loan">
-            <form action="action.php"> 
-                <label for="type loan">HOME LOAN</label>
-                <input type="text" value="2000000" name="loan amount">
-            </form>
-            <div class="slidecontainer">
-                 <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-               </div>
-            <br>
-            <form action="action.php"> 
-                <label for="type loan">INTEREST RATE</label>
-                <input type="text" value="1000000" name="loan amount">
-            </form>
-            <br>
-            <form action="action.php"> 
-              <label for="type loan">LOAN TENURE</label>
-              <input type="text" value="1000000" name="loan amount">
-          </form>
-            <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-              </div>
-            </div>
-        </div>
+  <div class="col-sm-12 ">
+        <div class="form-loan">
+          <h1 style="text-align: left;">EMI CALCULATOR </h1>
+          <nav class="navbar navbar-default header navbar-right"  id="main_content">
+            <ul class="nav navbar-nav" >
+              <li ><a href="#" >Login</a></li>
+              <li ><a href="#">Sign up</a></li>
+            </ul>
+        </nav>
+            <form name="loandata">
+              
+              <div class="container">
 
-      </nav>
-      <div class="col-sm-3">
-        <h1>side section</h1>
+                <label for="type loan">Home Loan</label><br>
+                <div class="col-xs-2">
+                <div class="input-group">
+                <input type="text" name="principal" class="form-control" min="0" max="20000000" value="5000000" step="100000" oninput="this.form.principalrange.value=this.value" onchange="yearly_calculate();" /> 
+                <div class="input-group-btn"><button class="btn btn-default" type="submit">₹</button></div></div></div>
+            
+                <input type="range" class="slider" name="principalrange" min="0" max="20000000" step="100000" value="5000000" oninput="this.form.principal.value=this.value" onchange="yearly_calculate();" />
+                </div>
+       <br>
+           <label for="type loan">INTEREST RATE</label>
+           <input type="text" name="interest" min="5" max="20" value="10.5" step="0.01" oninput="this.form.interestrange.value=this.value" onchange="yearly_calculate();" /><br>
+           <input type="range" name="interestrange" min="5" max="20" value="10.5" step="0.01" oninput="this.form.interest.value=this.value" onchange="yearly_calculate();" />
+       <br>
+         <label for="type loan">LOAN TENURE</label>
+         <input type="text" id ="text_tenure" name="tenure" value="20" oninput="this.form.tenureRange.value=this.value" onchange="yearly_calculate();" />
+         
+        <br>
+         <input type="range" id ="range_tenure"name="tenureRange" min="0" max="30" value="20" oninput="this.form.tenure.value=this.value" onchange="yearly_calculate();"/><br>
+        
+    </form>
+    <button onclick="year()">yr</button>
+    <button onclick="month()">mo</button>
        </div>
-  </div>
-  <div class="row emi-amount-outer">
-    <div class="col-sm-3 emi-amount" style="border-style:double ;"> 
-      <h4>Loan EMI</h4>
-     <p>₹49,919</p> 
-      <h4>Total Interest Payable</h4>
-      <p> ₹69,80,559</p>
-     
-      <h4>Total Payment
-        (Principal + Interest)</h4>
-         <p>₹1,19,80,559</p>
-      </div>
-    <div class="col-sm-3" style="border-style:double;">piechart
-    </div>
-</div>
-  </div>
 
+       <div class="col-sm-6 emi-amount" style="border-style:solid;" name = "output" class="output"> 
+        <h4>Your monthly payment will be:</h4>
+       <input type="text" name="payment" size="12" id = "output1">
+        <h4>Your total payment will be:</h4>
+        <p><input type="text" name="total" size="12" id = "output2"></p>
+        <h4>Your total interest payments will be:</h4>
+           <p><input type="text" name="totalinterest" size="12" id = "output3"></p>
+        </div>
+       <div class="col-sm-6" style="border-style:solid;">piechart
+       </div>
 </div>
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</div>
+<script language="JavaScript">
+  function month(){
+    document.getElementById('text_tenure').value = document.getElementById('text_tenure').value*12;
+    document.getElementById('range_tenure').max = 360
+    document.getElementById('range_tenure').value = document.getElementById('range_tenure').value*12;
+  }
+  function year(){
+    document.getElementById('text_tenure').value = document.getElementById('text_tenure').value/12;
+    document.getElementById('range_tenure').max = 30
+    document.getElementById('range_tenure').value = document.getElementById('range_tenure').value/12;
+  }
+
+  function yearly_calculate() {
+
+      var principal = document.loandata.principal.value;
+      var interest = document.loandata.interest.value / 100 / 12;
+      var payments = document.loandata.tenure.value * 12;
+  
+      var x = Math.pow(1 + interest, payments);
+      var monthly = (principal*x*interest)/(x-1);
+
+      if (!isNaN(monthly) && 
+          (monthly != Number.POSITIVE_INFINITY) &&
+          (monthly != Number.NEGATIVE_INFINITY)) {
+  
+          document.getElementById('output1').value = round(monthly);
+          document.getElementById('output2').value = round(monthly * payments);
+          document.getElementById('output3').value = 
+              round((monthly * payments) - principal);
+      }
+
+      else {
+          document.output.payment.value = "";
+          document.output.total.value = "";
+          document.output.totalinterest.value = "";
+      }
+  }
+  
+  function monthly_calculate() {
+
+var principal = document.loandata.principal.value;
+var interest = document.loandata.interest.value / 100 / 12;
+var payments = document.loandata.tenure.value;
+
+var x = Math.pow(1 + interest, payments);
+var monthly = (principal*x*interest)/(x-1);
+
+if (!isNaN(monthly) && 
+    (monthly != Number.POSITIVE_INFINITY) &&
+    (monthly != Number.NEGATIVE_INFINITY)) {
+
+    document.getElementById('output1').value = round(monthly);
+    document.getElementById('output2').value = round(monthly * payments);
+    document.getElementById('output3').value = 
+        round((monthly * payments) - principal);
+}
+
+else {
+    document.output.payment.value = "";
+    document.output.total.value = "";
+    document.output.totalinterest.value = "";
+}
+}
+  // This simple method rounds a number to two decimal places.
+  function round(x) {
+    return Math.round(x*100)/100;
+  }
+  </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
