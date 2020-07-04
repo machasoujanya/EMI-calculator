@@ -44,26 +44,24 @@
           <br>
           <br>
           <div class="form-loan">
-            <form action="action.php"> 
-                <label for="type loan">Personal Loan</label>
-                <input type="text" value="2000000" name="loan amount">
-            </form>
-            <div class="slidecontainer">
-                 <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-               </div>
+                 <form>
+                  <label for="type loan">Personal Loan</label>
+                  <input type="number" name="amountInput" min="0" max="150000" value="350000" oninput="this.form.amountRange.value=this.value" />
+                  <input type="range" name="amountRange" min="0" max="150000" value="35000" oninput="this.form.amountInput.value=this.value" />
+                 </form>
             <br>
             <form action="action.php"> 
                 <label for="type loan">INTEREST RATE</label>
-                <input type="text" value="1000000" name="loan amount">
+                <input type="number" name="amountInput" min="5" max="25" value="17.5" oninput="this.form.amountRange.value=this.value" />
+                <input type="range" name="amountRange" min="5" max="205" value="17.5" oninput="this.form.amountInput.value=this.value" />
+               
             </form>
             <br>
             <form action="action.php"> 
               <label for="type loan">LOAN TENURE</label>
-              <input type="text" value="1000000" name="loan amount">
+              <input type="number" name="amountInput" min="0" max="5" value="5" oninput="this.form.amountRange.value=this.value" />
+                  <input type="range" name="amountRange" min="0" max="5" value="5" oninput="this.form.amountInput.value=this.value" />
           </form>
-            <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-              </div>
             </div>
         </div>
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-3.4.1-dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="CSS/home.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="contanier-fluid" >
+  <div class="row " id="maincontanier">
+  <div class="col-sm-12 ">
+        <div class="form-loan">
+          <h1 style="text-align: left;">EMI CALCULATOR </h1>
+          <nav class="navbar navbar-default header navbar-right"  id="main_content">
+            <ul class="nav navbar-nav" >
+              <li ><a href="#" >Login</a></li>
+              <li ><a href="#">Sign up</a></li>
+            </ul>
+        </nav>
+            <form name="loandata">
+              
+              <div class="container">
+
+                <label for="type loan">Home Loan</label><br>
+                <div class="col-xs-2">
+                <div class="input-group">
+                <input type="text" name="principal" class="form-control" min="0" max="20000000" value="5000000" step="100000" oninput="this.form.principalrange.value=this.value" onchange="yearly_calculate();" /> 
+                <div class="input-group-btn"><button class="btn btn-default" type="submit">₹</button></div></div></div>
+            
+                <input type="range" class="slider" name="principalrange" min="0" max="20000000" step="100000" value="5000000" oninput="this.form.principal.value=this.value" onchange="yearly_calculate();" />
+                </div>
+       <br>
+           <label for="type loan">INTEREST RATE</label>
+           <input type="text" name="interest" min="5" max="20" value="10.5" step="0.01" oninput="this.form.interestrange.value=this.value" onchange="yearly_calculate();" /><br>
+           <input type="range" name="interestrange" min="5" max="20" value="10.5" step="0.01" oninput="this.form.interest.value=this.value" onchange="yearly_calculate();" />
+       <br>
+         <label for="type loan">LOAN TENURE</label>
+         <input type="text" id ="text_tenure" name="tenure" value="20" oninput="this.form.tenureRange.value=this.value" onchange="yearly_calculate();" />
+         
+        <br>
+         <input type="range" id ="range_tenure"name="tenureRange" min="0" max="30" value="20" oninput="this.form.tenure.value=this.value" onchange="yearly_calculate();"/><br>
+        
+    </form>
+    <button onclick="year()">yr</button>
+    <button onclick="month()">mo</button>
+       </div>
+
+       <div class="col-sm-6 emi-amount" style="border-style:solid;" name = "output" class="output"> 
+        <h4>Your monthly payment will be:</h4>
+       <input type="text" name="payment" size="12" id = "output1">
+        <h4>Your total payment will be:</h4>
+        <p><input type="text" name="total" size="12" id = "output2"></p>
+        <h4>Your total interest payments will be:</h4>
+           <p><input type="text" name="totalinterest" size="12" id = "output3"></p>
+        </div>
+       <div class="col-sm-6" style="border-style:solid;">piechart
+       </div>
+</div>
+</div>
+<script language="JavaScript">
+  function month(){
+    document.getElementById('text_tenure').value = document.getElementById('text_tenure').value*12;
+    document.getElementById('range_tenure').max = 360
+    document.getElementById('range_tenure').value = document.getElementById('range_tenure').value*12;
+  }
+  function year(){
+    document.getElementById('text_tenure').value = document.getElementById('text_tenure').value/12;
+    document.getElementById('range_tenure').max = 30
+    document.getElementById('range_tenure').value = document.getElementById('range_tenure').value/12;
+  }
+
+  function yearly_calculate() {
+
+      var principal = document.loandata.principal.value;
+      var interest = document.loandata.interest.value / 100 / 12;
+      var payments = document.loandata.tenure.value * 12;
+  
+      var x = Math.pow(1 + interest, payments);
+      var monthly = (principal*x*interest)/(x-1);
+
+      if (!isNaN(monthly) && 
+          (monthly != Number.POSITIVE_INFINITY) &&
+          (monthly != Number.NEGATIVE_INFINITY)) {
+  
+          document.getElementById('output1').value = round(monthly);
+          document.getElementById('output2').value = round(monthly * payments);
+          document.getElementById('output3').value = 
+              round((monthly * payments) - principal);
+      }
+
+      else {
+          document.output.payment.value = "";
+          document.output.total.value = "";
+          document.output.totalinterest.value = "";
+      }
+  }
+  
+  function monthly_calculate() {
+
+var principal = document.loandata.principal.value;
+var interest = document.loandata.interest.value / 100 / 12;
+var payments = document.loandata.tenure.value;
+
+var x = Math.pow(1 + interest, payments);
+var monthly = (principal*x*interest)/(x-1);
+
+if (!isNaN(monthly) && 
+    (monthly != Number.POSITIVE_INFINITY) &&
+    (monthly != Number.NEGATIVE_INFINITY)) {
+
+    document.getElementById('output1').value = round(monthly);
+    document.getElementById('output2').value = round(monthly * payments);
+    document.getElementById('output3').value = 
+        round((monthly * payments) - principal);
+}
+
+else {
+    document.output.payment.value = "";
+    document.output.total.value = "";
+    document.output.totalinterest.value = "";
+}
+}
+  // This simple method rounds a number to two decimal places.
+  function round(x) {
+    return Math.round(x*100)/100;
+  }
+  </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

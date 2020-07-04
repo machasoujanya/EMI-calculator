@@ -3,95 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap-3.4.1-dist/css/bootstrap.min.css">
-   <link rel="stylesheet" href="CSS/home.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel = "charts" href="canvasjs/canvasjs.min.js">
+    <title>EMI Calculator</title>
+   <style>
+       input[type=range]{
+  width: 95%;
+  display: inline-table;
+  
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider1 {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider1:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider1 {
+  background-color: #2ab934;
+}
+
+input:focus + .slider1 {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider1:before {
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked+ .slider1 .on
+{display: block;}
+
+input:checked + .slider1 .off
+{display: none;}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider1.round {
+  border-radius: 34px;
+}
+
+.slider1.round:before {
+  border-radius: 50%;}
+   </style>
 </head>
 <body>
-  <div class="contanier-fluid">
-  <div class="row">
-      <div class="col-sm-12 ">
-        <nav class="navbar navbar-default header">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a href="#"><img src="images/emi 1.jpg" alt="emi image" style="width: 80px; height: 100px;"></a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li><a href="#">Calculator</a></li>
-                <li><a href="#">widget</a></li>
-                <li><a href="#">Articales</a></li>
-                <li><a href="#">FAQS</a></li>
-              </ul>
-            </div>
-          </nav>
-      </div>
-  </div>
-  </div>
-  <h1>EMI CALCULATOR FOR HOME LOAN IN INDIA</h1>
-  <div class="row " id="maincontanier">
-    <div class="container-fluid">
-  <div class="col-sm-6 ">
-    <nav class="navbar navbar-default">
-     
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="emi home.html">Home Loan</a></li>
-            <li><a href="C:/Users/DELL/Desktop/EMI-calculator/html/Personal_Loan.html">Personal loan</a></li>
-          </ul>
-          <br>
-          <br>
-          <br>
-          <div class="form-loan">
-            <form action="action.php"> 
-                <label for="type loan">HOME LOAN</label>
-                <input type="text" value="2000000" name="loan amount">
-            </form>
-            <div class="slidecontainer">
-                 <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-               </div>
-            <br>
-            <form action="action.php"> 
-                <label for="type loan">INTEREST RATE</label>
-                <input type="text" value="1000000" name="loan amount">
-            </form>
-            <br>
-            <form action="action.php"> 
-              <label for="type loan">LOAN TENURE</label>
-              <input type="text" value="1000000" name="loan amount">
-          </form>
-            <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="50" class="slider" id="myRange">
-              </div>
-            </div>
+    <div class="container-fluid" style="width: 50%;">
+        <div class="container-fluid" style="padding-left: 0%;padding-right: 0%;">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+                <a class="navbar-brand" >EMI CALCULATOR</a>
+                </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+            </nav>
         </div>
+        <form style="border:thin double;" name="loandata">
+        <label class="col-sm-4 control-label"  style="text-align: right;">Loan Amount</label>
+            <div class="input-group col-sm-4">
+                <input type="text" class="form-control" value="5000000" name="loan_amount"  oninput="this.form.loan_range.value=this.value" onchange="yearly_calculate();"/>
+                <div class="input-group-btn">
+                    <span class="btn btn-default" type="submit">₹</span>
+                </div>
+            </div><br>
+            <input type="range" class="slider"  name="loan_range" min="0" max="20000000" step="100000" value="5000000" oninput="this.form.loan_amount.value=this.value" onchange="yearly_calculate();"/>
+            <br>
+         <label class="col-sm-4 control-label" style="text-align: right;" >Annual Interest Rate</label>
+            <div class="input-group col-sm-4">
+                <input type="text" class="form-control" value="10.5" name="interest_rate" oninput="this.form.interestrange.value=this.value" onchange="yearly_calculate();"/>
+                <div class="input-group-btn">
+                <span class="btn btn-default" type="submit">%</span>
+                </div>
+            </div><br>
+           <input type="range" name="interestrange" min="5" max="20" value="10.5" step="0.01" oninput="this.form.interest_rate.value=this.value" onchange="yearly_calculate();"/>
+          <br>
+        <label class="col-sm-4 control-label"  style="text-align: right;">Tenure</label>
+            <div class="input-group col-sm-4">
+                <input type="text" class="form-control" value="20" name="tenure" oninput="this.form.tenureRange.value=this.value" onchange="yearly_calculate();"/>
+                <div class="input-group-btn">
 
-      </nav>
-      <div class="col-sm-3">
-        <h1>side section</h1>
-       </div>
-  </div>
-  <div class="row emi-amount-outer">
-    <div class="col-sm-3 emi-amount" style="border-style:double ;"> 
-      <h4>Loan EMI</h4>
-     <p>₹49,919</p> 
-      <h4>Total Interest Payable</h4>
-      <p> ₹69,80,559</p>
-     
-      <h4>Total Payment
-        (Principal + Interest)</h4>
-         <p>₹1,19,80,559</p>
-      </div>
-    <div class="col-sm-3" style="border-style:double;">piechart
-    </div>
-</div>
-  </div>
+                      <label class="switch"><input type="checkbox" id="togBtn" checked><div class="slider1"><!--ADDED HTML --><span class="on">Yr</span><span class="off">Mo</span><!--END--></div></label>
+                </div>
+            </div><br>
+            <input type="range" id ="range_tenure"name="tenureRange" min="0" max="30" value="20" oninput="this.form.tenure.value=this.value" onchange="yearly_calculate();"/><br>
+         </form>
+         <form name="output">
+         <div >
+            <div class="col-sm-6 emi-amount"  name = "output" class="output" style="border:thin double;height: 200px; width: 50%;"> 
+              <label class="col-sm-8 control-label"  style="text-align: right;">monthly payment</label>
+              <div class="input-group col-sm-4">
+                <input type="text" id = "monthly_payment" class="form-control" value="49919" name="monthly_payment" >
+            </div><br>
+            <div   name = "output" class="output"> 
+                <label class="col-sm-8 control-label"  style="text-align: right;">total payment</label>
+                <div class="input-group col-sm-4">
+                  <input type="text" id = "total_payment" class="form-control" value="11980559" name="total_payment" >
+              </div></div><br>
+              <div   name = "output" class="output"> 
+                <label class="col-sm-8 control-label"  style="text-align: right;">total interest payments</label>
+                <div class="input-group col-sm-4">
+                  <input type="text" id = "interest_payment" class="form-control" value="6980559" name="interest_payment" >
+              </div></div>
+            </div>
+               <div class="col-sm-6"  style="border:thin double;">
+                <div id="chartContainer" style="height: 200px; width: 100%;"></div>
+                
+               </div>
+               </div>
+            </form>
+     </div>
+     <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var checkbox = document.querySelector('input[type="checkbox"]');
+      
+        checkbox.addEventListener('change', function () {
+          if (checkbox.checked) {
+            year_active()
+            console.log('Checked');
+          } else {
+            month_active()
+            console.log('Not checked');
+          }
+        });
+      });
+    </script>
+     <script>
+         year = 1    
+         function month_active(){
+            month = 1
+            year = 0
+            document.loandata.tenure.value = document.loandata.tenure.value*12;
+            document.loandata.tenureRange.max = 360;
+            document.loandata.tenureRange.value = document.loandata.tenureRange.value*12;
+            
+            yearly_calculate()
+         }
 
-</div>
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+         function year_active(){
+            month = 0
+            year = 1
+            document.loandata.tenure.value = document.loandata.tenure.value/12;
+            document.loandata.tenureRange.value = document.loandata.tenureRange.value/12;
+            document.loandata.tenureRange.max = 30;
+            
+            yearly_calculate()
+         }
+        function yearly_calculate() {
+            var principal = document.loandata.loan_amount.value;
+            var interest = document.loandata.interest_rate.value / 100 / 12;
+            
+            if (year == 1){
+                var payments = document.loandata.tenure.value * 12;
+            }
+            else
+            var payments = document.loandata.tenure.value;
+            
+        
+            var x = Math.pow(1 + interest, payments);
+            var monthly = (principal*x*interest)/(x-1);
+            var principal_ratio = principal/(monthly * payments)*100;
+            var interest_ratio = ((monthly * payments) - principal)/(monthly * payments)*100;
+        
+      
+            if (!isNaN(monthly) && 
+                (monthly != Number.POSITIVE_INFINITY) &&
+                (monthly != Number.NEGATIVE_INFINITY)) {
+        
+                document.output.monthly_payment.value = Math.round(monthly);
+                document.output.total_payment.value = Math.round(monthly * payments);
+                document.output.interest_payment.value = Math.round((monthly * payments) - principal);
 
+            }
+      
+            else {
+                document.output.payment.value = "";
+                document.output.total.value = "";
+                document.output.totalinterest.value = "";
+            }
+        }
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        a = 41.7;
+        b = 58.3;
+        window.onload = function () {
+           
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	animationEnabled: true,
+	title:{
+		text: "Prinicipal vs Interest"
+	},
+	legend:{
+		cursor: "pointer",
+		itemclick: explodePie
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		indexLabel: "{name} - {y}%",
+		dataPoints: [
+			{ y: a, name: "Principal", exploded: true },
+			{ y: b, name: "Interest" }
+
+		]
+	}]
+});
+chart.render();
+}
+function explodePie (e) {
+	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+}
+        
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    
 </body>
 </html>
