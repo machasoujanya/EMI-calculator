@@ -11,15 +11,11 @@
   text-align: center;
   margin-left: 25%;
 }
-.input-group-btn{
-  
-  vertical-align: top;
-  
-}
+
 
 
 input[type=range]{
-  width: 35%;
+  width: 50%;
   display: inline-table;
   
 }
